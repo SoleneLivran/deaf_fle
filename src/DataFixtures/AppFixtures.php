@@ -36,8 +36,8 @@ class AppFixtures extends Fixture
          $sarah->setFirstName('Sarah');
          $sarah->setLastName('Livran');
          $sarah->setEmail('sarah@gmail.com');
-//         $password = $this->encoder->encodePassword($sarah, 'password');
-         $sarah->setPassword('Test');
+         $password = $this->encoder->encodePassword($sarah, 'password');
+         $sarah->setPassword($password);
          $sarah->addGroup($group1);
          $sarah->addGroup($group2);
          $manager->persist($sarah);

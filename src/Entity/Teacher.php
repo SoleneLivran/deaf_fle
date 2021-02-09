@@ -45,6 +45,11 @@ class Teacher implements UserInterface
      */
     private $groups;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     public function __construct()
     {
         $this->groups = new ArrayCollection();
@@ -131,54 +136,48 @@ class Teacher implements UserInterface
     }
 
     /**
-     * Returns the roles granted to the user.
-     *
-     *     public function getRoles()
-     *     {
-     *         return ['ROLE_USER'];
-     *     }
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return string[] The user roles
+     * @see UserInterface
      */
-    public function getRoles()
+    public function getRoles(): array
     {
-        // TODO: Implement getRoles() method.
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
+     * @see UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
     /**
-     * Returns the username used to authenticate the user.
+     * A visual identifier that represents this user.
      *
-     * @return string The username
+     * @see UserInterface
      */
-    public function getUsername()
+    public function getUsername(): string
     {
-        // TODO: Implement getUsername() method.
+        return (string) $this->email;
     }
 
     /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
+     * @see UserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

@@ -27,9 +27,11 @@ class AppFixtures extends Fixture
     {
 
          $group1 = new Group();
+         $group1->setName('Groupe 1');
          $manager->persist($group1);
 
          $group2 = new Group();
+         $group2->setName('Groupe 2');
          $manager->persist($group2);
 
 

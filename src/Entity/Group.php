@@ -21,16 +21,6 @@ class Group
     private $id;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $startDate;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $endDate;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Teacher::class, inversedBy="groups")
      */
     private $teachers;
@@ -45,6 +35,11 @@ class Group
      */
     private $words;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->teachers = new ArrayCollection();
@@ -55,30 +50,6 @@ class Group
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getStartDate(): ?\DateTimeInterface
-    {
-        return $this->startDate;
-    }
-
-    public function setStartDate(?\DateTimeInterface $startDate): self
-    {
-        $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    public function getEndDate(): ?\DateTimeInterface
-    {
-        return $this->endDate;
-    }
-
-    public function setEndDate(?\DateTimeInterface $endDate): self
-    {
-        $this->endDate = $endDate;
-
-        return $this;
     }
 
     /**
@@ -165,8 +136,20 @@ class Group
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     public function __toString(): string
     {
-        return $this->id;
+        return $this->name;
     }
 }

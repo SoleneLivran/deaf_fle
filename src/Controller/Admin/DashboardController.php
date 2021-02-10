@@ -9,6 +9,7 @@ use App\Entity\Word;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -21,7 +22,10 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        // redirect to some CRUD controller
+        $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
+
+        return $this->redirect($routeBuilder->setController(GroupCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -33,19 +37,11 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linktoDashboard('Acueil', 'fa fa-home'),
-            // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-
-            MenuItem::section('― Groupes', 'fas fa-arrow-alt-circle-down'),
-            MenuItem::linkToCrud('Gestion des groupes', 'fas fa-globe-americas', Group::class),
-//            MenuItem::linkToCrud('Dictionnaire', 'fas fa-globe-americas', Word::class),
-
-
-            MenuItem::section('― Apprenant·e·s', 'fas fa-arrow-alt-circle-down'),
-            MenuItem::linkToCrud('Gestion des apprenant·e·s', 'fas fa-globe-americas', Student::class),
-
-            MenuItem::section('― Enseignant·e·s', 'fas fa-arrow-alt-circle-down'),
-            MenuItem::linkToCrud('Gestion des enseignant·e·s', 'fas fa-globe-americas', Teacher::class),
+//            MenuItem::linktoDashboard('Accueil', 'fa fa-home'),
+            MenuItem::linkToCrud('Groupes', 'fas fa-users', Group::class),
+            MenuItem::linkToCrud('Dictionnaires', 'fas fa-book', Word::class),
+            MenuItem::linkToCrud('Apprenant·e·s', 'fas fa-user-graduate', Student::class),
+            MenuItem::linkToCrud('Enseignant·e·s', 'fas fa-chalkboard-teacher', Teacher::class),
 
         ];
     }

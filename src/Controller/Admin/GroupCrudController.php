@@ -3,11 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Group;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 class GroupCrudController extends AbstractCrudController
 {
@@ -20,11 +21,16 @@ class GroupCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            DateTimeField::new('startDate'),
-            DateTimeField::new('endDate'),
+            TextField::new('name'),
             AssociationField::new('students'),
             AssociationField::new('teachers'),
 //            --> create and use a method "getAllWords"?
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add(EntityFilter::new('teachers'));
     }
 }

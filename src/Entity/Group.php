@@ -36,7 +36,7 @@ class Group
     private $teachers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Student::class, mappedBy="groupId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Student::class, mappedBy="group", orphanRemoval=true)
      */
     private $students;
 

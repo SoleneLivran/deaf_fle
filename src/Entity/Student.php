@@ -39,7 +39,7 @@ class Student
 
     /**
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="students")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $group;
 
@@ -106,5 +106,10 @@ class Student
         $this->group = $group;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->firstName.' '.$this->lastName;
     }
 }

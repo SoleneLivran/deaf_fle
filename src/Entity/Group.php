@@ -36,12 +36,12 @@ class Group
     private $teachers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Student::class, mappedBy="group", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Student::class, mappedBy="group")
      */
     private $students;
 
     /**
-     * @ORM\OneToMany(targetEntity=Word::class, mappedBy="groupId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Word::class, mappedBy="group", orphanRemoval=true)
      */
     private $words;
 
@@ -163,5 +163,10 @@ class Group
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->id;
     }
 }

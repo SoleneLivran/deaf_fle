@@ -42,7 +42,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Dictionnaires', 'fas fa-book', Word::class),
             MenuItem::linkToCrud('Apprenant·e·s', 'fas fa-user-graduate', Student::class),
             MenuItem::linkToCrud('Enseignant·e·s', 'fas fa-chalkboard-teacher', Teacher::class),
-
         ];
     }
 }

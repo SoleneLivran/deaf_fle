@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ec32fab3-f3c9-40c2-8d7e-c8473b94d2a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/GroupCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/GroupCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/StudentCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/StudentCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/TeacherCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/TeacherCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/WordCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/WordCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +160,7 @@
       <option name="presentableId" value="Default" />
       <updated>1612818930822</updated>
       <workItem from="1612818932934" duration="12143000" />
-      <workItem from="1612866457863" duration="15554000" />
+      <workItem from="1612866457863" duration="16630000" />
     </task>
     <servers />
   </component>

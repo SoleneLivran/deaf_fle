@@ -19,32 +19,21 @@ class GroupRepository extends ServiceEntityRepository
         parent::__construct($registry, Group::class);
     }
 
-    // /**
-    //  * @return Group[] Returns an array of Group objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $teacherId
+     * @return Group[] Returns an array of Group objects
+     */
+    public function findAllByTeacher($teacherId)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $queryBuilder = $this->createQueryBuilder('g');
 
-    /*
-    public function findOneBySomeField($value): ?Group
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $queryBuilder
+            ->innerJoin('g.teachers', 'teacher')
+            ->where('teacher.id = :teacherId')
+            ->addOrderBy('g.name', 'ASC')
+            ->setParameter('teacherId', $teacherId);
+
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
     }
-    */
 }

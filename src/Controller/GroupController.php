@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GroupController extends AbstractController
 {
     /**
-     * @Route("/groups", name="groups_list", methods={"GET"}))
+     * @Route("/groups", name="groups_list", methods={"GET"})
      * @param GroupRepository $repository
      * @return Response
      */

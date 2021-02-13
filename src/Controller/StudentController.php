@@ -21,7 +21,9 @@ class StudentController extends AbstractController
      */
     public function list(Group $group, StudentRepository $repository): Response
     {
-        //TODO : validates that group is current teacher's group
+        if (!$group->getTeachers()->contains($this->getUser())) {
+            throw $this->createAccessDeniedException('You are trying to access another teacher\'s group');
+        }
 
         $students = $repository->findAllByGroup($group->getId());
         return $this->json(

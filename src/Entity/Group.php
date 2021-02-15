@@ -18,7 +18,7 @@ class Group
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"groups:list"})
+     * @Groups({"groups:list", "student:view"})
      */
     private $id;
 

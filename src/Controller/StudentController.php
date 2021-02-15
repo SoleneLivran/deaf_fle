@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Group;
+use App\Entity\Student;
 use App\Repository\StudentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class StudentController extends AbstractController
 {
     /**
-     * @Route("/group/{id}/students", name="students_list", methods={"GET"})
+     * @Route("/group/{id}/students", name="students_list", methods={"GET"}, requirements={"id"="\d+"})
      * @param Group $group
      * @param StudentRepository $repository
      * @return Response
@@ -31,6 +32,21 @@ class StudentController extends AbstractController
             Response::HTTP_OK,
             [],
             ["groups" => ["students:list"]]
+        );
+    }
+
+    /**
+     * @Route("/student/{id}", name="student_view", methods={"GET"}, requirements={"id"="\d+"})
+     * @param Student $student
+     * @return Response
+     */
+    public function view(Student $student): Response
+    {
+        return $this->json(
+            $student,
+            Response::HTTP_OK,
+            [],
+            ["groups" => ["student:view"]]
         );
     }
 }

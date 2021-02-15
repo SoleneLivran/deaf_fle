@@ -15,36 +15,38 @@ class Student
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"students:list"})
+     * @Groups({"students:list", "student:view"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"students:list"})
+     * @Groups({"students:list", "student:view"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"students:list"})
+     * @Groups({"students:list", "student:view"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"students:list"})
+     * @Groups({"students:list", "student:view"})
      */
     private $avatar;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"student:view"})
      */
     private $text;
 
     /**
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="students")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Groups({"student:view"})
      */
     private $group;
 

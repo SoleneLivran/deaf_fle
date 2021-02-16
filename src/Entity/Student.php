@@ -119,4 +119,13 @@ class Student
     {
         return $this->firstName.' '.$this->lastName;
     }
+
+    /**
+     * @Groups({"student:view"})
+     */
+    public function getTextAsSentences(): Array
+    {
+        $textAsSentences = preg_split('/(?<=\.)\s/', $this->getText());
+        return $textAsSentences;
+    }
 }

@@ -123,9 +123,27 @@ class Student
     /**
      * @Groups({"student:view"})
      */
-    public function getTextAsSentences(): Array
+    public function getTextAsSentences(): array
     {
         $textAsSentences = preg_split('/(?<=\.)\s/', $this->getText());
         return $textAsSentences;
+    }
+
+    /**
+     * @Groups({"student:view"})
+     */
+    public function getTextAsWords(): array //keeping each word in its sentence
+    {
+        $text = $this->getTextAsSentences();
+        $textAsWords = [];
+
+        foreach ($text as $sentence) {
+            $formattedSentence = [];
+            $sentenceAsWords = explode(' ', $sentence);
+            $formattedSentence[] = $sentenceAsWords;
+            $textAsWords[] = $sentenceAsWords;
+        }
+
+        return $textAsWords;
     }
 }

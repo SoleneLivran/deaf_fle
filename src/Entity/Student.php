@@ -139,7 +139,7 @@ class Student
 
         foreach ($text as $sentence) {
             $formattedSentence = [];
-            $sentenceAsWords = explode(' ', $sentence);
+            $sentenceAsWords = preg_split('/\s(?![!?;:])/', $sentence);
             $formattedSentence[] = $sentenceAsWords;
             $textAsWords[] = $sentenceAsWords;
         }

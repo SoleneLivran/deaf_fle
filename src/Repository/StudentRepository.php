@@ -35,16 +35,4 @@ class StudentRepository extends ServiceEntityRepository
         $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
-
-    /*
-    public function findOneBySomeField($value): ?Student
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

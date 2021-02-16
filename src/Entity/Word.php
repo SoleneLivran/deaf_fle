@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\WordRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=WordRepository::class)
@@ -14,16 +15,19 @@ class Word
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"words:list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"words:list"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"words:list"})
      */
     private $definition;
 

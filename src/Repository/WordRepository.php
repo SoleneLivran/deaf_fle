@@ -19,32 +19,19 @@ class WordRepository extends ServiceEntityRepository
         parent::__construct($registry, Word::class);
     }
 
-    // /**
-    //  * @return Word[] Returns an array of Word objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param $groupId
+     * @return Word[] Returns an array of Word objects
+     */
+    public function findAllByGroup($groupId)
     {
-        return $this->createQueryBuilder('w')
-            ->andWhere('w.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('w.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $queryBuilder = $this->createQueryBuilder('word');
 
-    /*
-    public function findOneBySomeField($value): ?Word
-    {
-        return $this->createQueryBuilder('w')
-            ->andWhere('w.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $queryBuilder
+            ->where('word.group = :groupId')
+            ->setParameter('groupId', $groupId);
+
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
     }
-    */
 }

@@ -1,4 +1,6 @@
 {
+    "name": "solenelivran/deaf-fle",
+    "description": "FLE Course for deaf people",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "dev",

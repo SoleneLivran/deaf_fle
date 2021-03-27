@@ -34,7 +34,7 @@ jobs:
       - name: Initialize MySQL database
         run: |
           bin/console doctrine:database:create --no-interaction
-          bin/console doctrine:migrations:migrate --force --no-interaction
+          bin/console doctrine:migrations:migrate --no-interaction
         env:
           APP_ENV: test
           APP_DEBUG: 1

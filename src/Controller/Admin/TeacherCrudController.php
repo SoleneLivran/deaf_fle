@@ -25,7 +25,7 @@ class TeacherCrudController extends AbstractCrudController
             TextField::new('firstName'),
             TextField::new('lastName'),
             TextField::new('email'),
-            AssociationField::new('groups'),
+            AssociationField::new('groups')->hideOnForm(),
         ];
     }
 }

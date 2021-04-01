@@ -9,12 +9,19 @@ class StudentControllerTest extends WebTestCase
     // test page cannot be accessed when not connected
     public function testAccessDeniedIsNotConnected()
     {
-        $client = self::createClient();
+        $client = static::createClient();
         $client->request('GET', '/api/group/1/students');
         $this->assertResponseStatusCodeSame('401');
     }
 
     // test token generation is ok
+    // TODO : factorization in a tests tool directory
+    public function testJWTokenGenerate()
+    {
+        $client = static::createClient();
+        $client->request('POST', '/api/login_check');
+        file_put_contents(__DIR__ . '/toto.html', $client->getResponse()->getContent());
+    }
 
     // test page can be accessed when logged in with group teacher
 

@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class StudentController extends AbstractController
 {
     /**
-     * @Route("/group/{id}/students", name="students_list", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/groups/{id}/students", name="students_list", methods={"GET"}, requirements={"id"="\d+"})
      * @param Group $group
      * @param StudentRepository $repository
      * @return Response

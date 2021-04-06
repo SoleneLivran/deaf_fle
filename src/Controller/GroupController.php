@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Group;
 use App\Entity\Teacher;
 use App\Repository\GroupRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,6 +29,25 @@ class GroupController extends AbstractController
         $groups = $repository->findAllByTeacher($teacher->getId());
         return $this->json(
             $groups,
+            Response::HTTP_OK,
+            [],
+            ["groups" => ["groups:list"]]
+        );
+    }
+
+    /**
+     * @Route("/groups/{id}", name="group_view", methods={"GET"}, requirements={"id"="\d+"})
+     * @param Group $group
+     * @return Response
+     */
+    public function getOneGroupById(Group $group) : Response
+    {
+        if (!$group->getTeachers()->contains($this->getUser())) {
+            throw $this->createAccessDeniedException('You are trying to access another teacher\'s group');
+        }
+
+        return $this->json(
+            $group,
             Response::HTTP_OK,
             [],
             ["groups" => ["groups:list"]]

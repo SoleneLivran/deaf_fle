@@ -10,7 +10,7 @@ class StudentControllerTest extends WebTestCase
     public function testAccessDeniedIsNotConnected()
     {
         $client = static::createClient();
-        $client->request('GET', '/api/group/1/students');
+        $client->request('GET', '/api/groups/1/students');
         $this->assertResponseStatusCodeSame('401');
     }
 

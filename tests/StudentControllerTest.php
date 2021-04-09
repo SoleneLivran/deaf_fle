@@ -20,7 +20,7 @@ class StudentControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $client->request('POST', '/api/login_check');
-        file_put_contents(__DIR__ . '/toto.html', $client->getResponse()->getContent());
+//        file_put_contents(__DIR__ . '/toto.html', $client->getResponse()->getContent());
     }
 
     // test page can be accessed when logged in with group teacher

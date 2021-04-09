@@ -45,6 +45,10 @@ class StudentController extends AbstractController
      */
     public function view(Student $student): Response
     {
+        if (!$student->getGroup()->getTeachers()->contains($this->getUser())) {
+            throw $this->createAccessDeniedException('You are trying to access another teacher\'s group');
+        }
+
         return $this->json(
             $student,
             Response::HTTP_OK,
@@ -62,6 +66,10 @@ class StudentController extends AbstractController
      */
     public function update(Request $request, Student $student, SerializerInterface $serializer) : Response
     {
+        if (!$student->getGroup()->getTeachers()->contains($this->getUser())) {
+            throw $this->createAccessDeniedException('You are trying to access another teacher\'s group');
+        }
+
         $submittedData = $request->getContent();
 
         $serializer->deserialize($submittedData, Student::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $student]);

@@ -24,18 +24,21 @@ class Group
 
     /**
      * @ORM\ManyToMany(targetEntity=Teacher::class, inversedBy="groups")
+     * @var Collection<int, Teacher>
      */
-    private ?Collection $teachers;
+    private Collection $teachers;
 
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="group")
+     * @var Collection<int, Student>
      */
-    private ?Collection $students;
+    private Collection $students;
 
     /**
      * @ORM\OneToMany(targetEntity=Word::class, mappedBy="group", orphanRemoval=true)
+     * @var Collection<int, Word>
      */
-    private ?Collection $words;
+    private Collection $words;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -56,7 +59,7 @@ class Group
     }
 
     /**
-     * @return Collection<Teacher>
+     * @return Collection<int, Teacher>
      */
     public function getTeachers(): Collection
     {
@@ -80,7 +83,7 @@ class Group
     }
 
     /**
-     * @return Collection<Student>
+     * @return Collection<int, Student>
      */
     public function getStudents(): Collection
     {
@@ -110,7 +113,7 @@ class Group
     }
 
     /**
-     * @return Collection<Word>
+     * @return Collection<int, Word>
      */
     public function getWords(): Collection
     {
@@ -153,6 +156,6 @@ class Group
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->name ?? '';
     }
 }

@@ -45,6 +45,10 @@ class StudentController extends AbstractController
      */
     public function view(Student $student): Response
     {
+        if (!$student->getGroup()) {
+            throw $this->createAccessDeniedException('This student has no group');
+        }
+
         if (!$student->getGroup()->getTeachers()->contains($this->getUser())) {
             throw $this->createAccessDeniedException('You are trying to access another teacher\'s group');
         }
@@ -66,6 +70,10 @@ class StudentController extends AbstractController
      */
     public function update(Request $request, Student $student, SerializerInterface $serializer) : Response
     {
+        if (!$student->getGroup()) {
+            throw $this->createAccessDeniedException('This student has no group');
+        }
+
         if (!$student->getGroup()->getTeachers()->contains($this->getUser())) {
             throw $this->createAccessDeniedException('You are trying to access another teacher\'s group');
         }

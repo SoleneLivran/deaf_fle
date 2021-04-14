@@ -20,28 +20,28 @@ class Group
      * @ORM\Column(type="integer")
      * @Groups({"groups:list", "student:view"})
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\ManyToMany(targetEntity=Teacher::class, inversedBy="groups")
      */
-    private $teachers;
+    private ?Collection $teachers;
 
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="group")
      */
-    private $students;
+    private ?Collection $students;
 
     /**
      * @ORM\OneToMany(targetEntity=Word::class, mappedBy="group", orphanRemoval=true)
      */
-    private $words;
+    private ?Collection $words;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"groups:list"})
      */
-    private $name;
+    private ?string $name;
 
     public function __construct()
     {
@@ -56,7 +56,7 @@ class Group
     }
 
     /**
-     * @return Collection|Teacher[]
+     * @return Collection<Teacher>
      */
     public function getTeachers(): Collection
     {
@@ -80,7 +80,7 @@ class Group
     }
 
     /**
-     * @return Collection|Student[]
+     * @return Collection<Student>
      */
     public function getStudents(): Collection
     {
@@ -110,7 +110,7 @@ class Group
     }
 
     /**
-     * @return Collection|Word[]
+     * @return Collection<Word>
      */
     public function getWords(): Collection
     {

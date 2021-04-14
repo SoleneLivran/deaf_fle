@@ -31,9 +31,6 @@ jobs:
       - name: Check vendors security vulnerabilities
         run: symfony check:security
 
-      - name: Run phpstan
-        run: vendor/bin/phpstan analyse -c phpstan.neon
-
       - name: Initialize MySQL database
         run: |
           bin/console doctrine:database:create --no-interaction
@@ -60,3 +57,6 @@ jobs:
         env:
           APP_ENV: test
           APP_DEBUG: 1
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse -c phpstan.neon

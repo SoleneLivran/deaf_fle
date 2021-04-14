@@ -57,3 +57,6 @@ jobs:
         env:
           APP_ENV: test
           APP_DEBUG: 1
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse -c phpstan.neon

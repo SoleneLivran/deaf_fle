@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Exception\StudentException;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -17,38 +18,38 @@ class Student
      * @ORM\Column(type="integer")
      * @Groups({"students:list", "student:view"})
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"students:list", "student:view"})
      */
-    private $firstName;
+    private ?string $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"students:list", "student:view"})
      */
-    private $lastName;
+    private ?string $lastName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"students:list", "student:view"})
      */
-    private $avatar;
+    private ?string $avatar;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"student:view"})
      */
-    private $text;
+    private ?string $text;
 
     /**
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="students")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Groups({"student:view"})
      */
-    private $group;
+    private ?Group $group;
 
     public function getId(): ?int
     {
@@ -122,10 +123,22 @@ class Student
 
     /**
      * @Groups({"student:view"})
+     * @return array<int, string>
+     * @throws StudentException
      */
-    public function getTextAsSentences(): array
+    public function getTextAsSentences(): ?array
     {
-        $textAsSentences = preg_split('/(?<=\.)\s/', $this->getText());
+        $text = $this->getText();
+        if (null === $text) {
+            throw new StudentException('This student has no text');
+        }
+
+        $textAsSentences = preg_split('/(?<=\.)\s/', $text);
+
+        if (false === $textAsSentences) {
+            throw new StudentException('Splitting text into sentences did not work');
+        }
+
         return $textAsSentences;
     }
 

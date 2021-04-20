@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WordController extends AbstractController
 {
     /**
-     * @Route("/group/{id}/words", name="words_list", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/groups/{id}/words", name="words_list", methods={"GET"}, requirements={"id"="\d+"})
      * @param Group $group
      * @param WordRepository $repository
      * @return Response

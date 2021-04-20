@@ -39,7 +39,7 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/student/{id}", name="student_view", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/students/{id}", name="student_view", methods={"GET"}, requirements={"id"="\d+"})
      * @param Student $student
      * @return Response
      */
@@ -64,7 +64,7 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/student/{id}", name="student_update", methods={"PATCH"}, requirements={"id"="\d+"})
+     * @Route("/students/{id}", name="student_update", methods={"PATCH"}, requirements={"id"="\d+"})
      * @param Request $request
      * @param Student $student
      * @param SerializerInterface $serializer

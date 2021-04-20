@@ -130,7 +130,7 @@ class Student
     {
         $text = $this->getText();
         if (null === $text) {
-            throw new StudentException('This student has no text');
+            return [];
         }
 
         $textAsSentences = preg_split('/(?<=\.)\s/', $text);
